@@ -22,16 +22,16 @@ public class UserController {
     }
 
     @PutMapping("/update/{userId}/name/{userName}")
-    public ResponseEntity<String>updateName(@PathVariable long userId,@PathVariable String userName){
+    public String updateName(@PathVariable long userId,@PathVariable String userName){
         userService.updateName(userId,userName);
-        return new ResponseEntity<>("Successful update", HttpStatus.CREATED);
+        return "Name has been updated";
 
     }
 
     @PutMapping("/update/{userId}/bio/{bio}")
-    public ResponseEntity<String>updateBio(@PathVariable long userId,@PathVariable String bio){
+    public String updateBio(@PathVariable long userId,@PathVariable String bio){
         userService.updateBio(userId,bio);
-        return new ResponseEntity<>("Successful update", HttpStatus.CREATED);
+        return "Bio has been updated";
 
     }
 
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<User>getProfile(@PathVariable long userId){
-        return new ResponseEntity<>(userService.getUserById(userId),HttpStatus.OK);
+    public User getProfile(@PathVariable long userId){
+        return userService.getUserById(userId);
     }
 }
