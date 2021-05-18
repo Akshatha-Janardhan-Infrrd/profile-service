@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     private Cloudinary cloudinaryConfig;
 
     @Override
-    public void updateName(long userId, String name) {
+    public void updateName(String userId, String name) {
         Optional<User> optionalUser=userRepository.findById(userId);
         User user= optionalUser.get();
         user.setName(name);
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateBio(long userId, String bio) {
+    public void updateBio(String userId, String bio) {
         Optional<User> optionalUser=userRepository.findById(userId);
         User user= optionalUser.get();
         user.setBio(bio);
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String uploadFile(MultipartFile file,long userId) {
+    public String uploadFile(MultipartFile file,String userId) {
         try {
             File uploadedFile = convertMultiPartToFile(file);
             Map uploadResult = cloudinaryConfig.uploader().upload(uploadedFile, ObjectUtils.emptyMap());
@@ -53,14 +53,14 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException(e);
         }
     }
-    private void updateProfilePicture(String picture,long userId){
+    private void updateProfilePicture(String picture,String userId){
         User user=getUserById(userId);
         user.setImage(picture);
         userRepository.save(user);
     }
 
     @Override
-    public User getUserById(long userId){
+    public User getUserById(String userId){
         Optional<User> tempUser=userRepository.findById(userId);
         return tempUser.get();
     }

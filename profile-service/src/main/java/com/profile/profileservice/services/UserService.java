@@ -6,10 +6,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 
 public interface UserService {
-    public void updateName(long userId,String name);
-    public void updateBio(long userId,String bio);
+    public void updateName(String userId,String name);
+    public void updateBio(String userId,String bio);
     public void addUser(User user);
-    public String uploadFile(MultipartFile file,long userId);
-    public User getUserById(long userId);
+    public String uploadFile(MultipartFile file,String userId);
+    public User getUserById(String userId);
 
 }

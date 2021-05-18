@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class User {
     @Id
     @Field(name = "_id")
-    private long userId;
+    private String userId;
     private String name;
     private String bio;
     private String image;
@@ -16,12 +16,7 @@ public class User {
     public User() {
     }
 
-    public User(long userId, String name, String bio) {
-        this.userId = userId;
-        this.name = name;
-        this.bio = bio;
-    }
-    public User(long userId, String name, String bio, String image) {
+    public User(String userId, String name, String bio, String image) {
         this.userId = userId;
         this.name = name;
         this.bio = bio;
@@ -29,9 +24,6 @@ public class User {
     }
 
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public String getImage() {
         return image;
@@ -41,8 +33,12 @@ public class User {
         this.image = image;
     }
 
-    public long getUserId() {
+    public String getUserId() {
         return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

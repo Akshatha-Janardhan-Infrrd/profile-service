@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/profile")
+
 public class UserController {
     @Autowired
     private UserService userService;
 
     @GetMapping("/welcome")
     public String welcome() {
-        User user=new User(3L,"ashi","singer","image");
+        User user=new User("aksh@gmail","RM","idol","image");
         userService.addUser(user);
         return "You can access this project!!";
     }
 
     @PutMapping("/update/{userId}/name/{userName}")
-    public String updateName(@PathVariable long userId,@PathVariable String userName){
+    public String updateName(@PathVariable String userId,@PathVariable String userName){
         userService.updateName(userId,userName);
         return "Name has been updated";
 
     }
 
     @PutMapping("/update/{userId}/bio/{bio}")
-    public String updateBio(@PathVariable long userId,@PathVariable String bio){
+    public String updateBio(@PathVariable String userId,@PathVariable String bio){
         userService.updateBio(userId,bio);
         return "Bio has been updated";
 
@@ -37,13 +37,13 @@ public class UserController {
 
 
     @PutMapping("/upload/{userId}")
-    public String uploadFile(@RequestParam("file") MultipartFile file,@PathVariable long userId) {
+    public String uploadFile(@RequestParam("file") MultipartFile file,@PathVariable String userId) {
         String url = userService.uploadFile(file,userId);
         return "File uploaded successfully: File path :  " + url;
     }
 
     @GetMapping("/user/{userId}")
-    public User getProfile(@PathVariable long userId){
+    public User getProfile(@PathVariable String userId){
         return userService.getUserById(userId);
     }
 }
