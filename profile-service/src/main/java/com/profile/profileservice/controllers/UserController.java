@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-
+@RequestMapping("/profile")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @GetMapping("/welcome")
     public String welcome() {
-        User user=new User("aksh@gmail","RM","idol","image");
+        User user=new User("rm@gmail.com","RM","idol","image");
         userService.addUser(user);
         return "You can access this project!!";
     }

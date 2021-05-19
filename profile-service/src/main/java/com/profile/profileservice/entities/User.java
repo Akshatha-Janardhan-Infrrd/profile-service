@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "userProfile")
 public class User {
     @Id
-    @Field(name = "_id")
     private String userId;
     private String name;
     private String bio;
@@ -22,7 +21,6 @@ public class User {
         this.bio = bio;
         this.image = image;
     }
-
 
 
     public String getImage() {

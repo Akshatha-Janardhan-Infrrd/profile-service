@@ -23,16 +23,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateName(String userId, String name) {
-        Optional<User> optionalUser=userRepository.findById(userId);
-        User user= optionalUser.get();
+        User user=userRepository.findByUserId(userId);
         user.setName(name);
         userRepository.save(user);
     }
 
     @Override
     public void updateBio(String userId, String bio) {
-        Optional<User> optionalUser=userRepository.findById(userId);
-        User user= optionalUser.get();
+        User user=userRepository.findByUserId(userId);
         user.setBio(bio);
         userRepository.save(user);
     }
@@ -61,8 +59,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(String userId){
-        Optional<User> tempUser=userRepository.findById(userId);
-        return tempUser.get();
+        User tempUser=userRepository.findByUserId(userId);
+        return tempUser;
     }
 
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
