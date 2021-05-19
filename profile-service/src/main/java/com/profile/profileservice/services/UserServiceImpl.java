@@ -24,15 +24,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateName(String userId, String name) {
         User user=userRepository.findByUserId(userId);
-        user.setName(name);
-        userRepository.save(user);
+        if(user==null){
+            User newUser= new User();
+            newUser.setUserId(userId);
+            newUser.setName(name);
+            newUser.setBio("Please enter your bio");
+            newUser.setImage("image");
+            addUser(newUser);
+        }else {
+            user.setName(name);
+            userRepository.save(user);
+        }
     }
 
     @Override
     public void updateBio(String userId, String bio) {
         User user=userRepository.findByUserId(userId);
-        user.setBio(bio);
-        userRepository.save(user);
+        if(user==null){
+            User newUser= new User();
+            newUser.setUserId(userId);
+            newUser.setName("Name");
+            newUser.setBio(bio);
+            newUser.setImage("image");
+            addUser(newUser);
+        }else {
+            user.setBio(bio);
+            userRepository.save(user);
+        }
     }
 
     @Override
